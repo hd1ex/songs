@@ -1,0 +1,31 @@
+\documentclass[landscape, 11pt,a4paper,twoside,ngerman]{book}
+\usepackage[landscape]{geometry}
+\usepackage[bookmarks]{hyperref}
+\usepackage[chorded]{songs}
+\usepackage[utf8x]{inputenc}
+\usepackage{textcomp}
+\usepackage{geometry}
+\usepackage{lastpage}
+\usepackage{lmodern}
+
+\geometry{a4paper, top=15mm, left=20mm, right=20mm, bottom=22.5mm, headsep=2.5mm, footskip=5mm}
+\setlength{\headheight}{10mm}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\lyricfont}{\sffamily}
+\renewcommand{\chorusfont}{\sffamily}
+\renewcommand{\idxtitlefont}{\sffamily\normalfont}
+
+\newindex{titleidx}{cbtitle}
+\indexsongsas{titleidx}{\thepage}
+
+\begin{document}
+    %\showindex{Title index}{titleidx}
+
+    \begin{songs}{titleidx}
+
+        % SONG_FILE
+
+    \end{songs}
+
+\end{document}
