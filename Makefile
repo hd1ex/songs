@@ -1,9 +1,14 @@
 srcfiles  := $(shell find songs/ -type f -name '*.tex')
 destfiles := $(patsubst songs/%.tex,build/%.tex,$(srcfiles))
+pdffiles := $(patsubst songs/%.tex,pdfs/%.pdf,$(srcfiles))
 
-all: $(destfiles)
+all: $(pdffiles)
 
-destination: $(destfiles)
+pdfs/%.pdf: build/%.tex
+	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
+	@echo "Creating pdf: $@"
+	@pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -aux-directory=$$(dirname $<) -output-directory=$$(dirname $<) "$<"
+	@mv "$$(find $$(dirname $<) -name '*.pdf')" "$$(dirname $@)/"
 
 build/%.tex: songs/%.tex
 	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
@@ -12,5 +17,6 @@ build/%.tex: songs/%.tex
 
 clean:
 	rm -rf build/
+	rm -rf pdfs/
 
 .PHONY: all clean destination
