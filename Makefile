@@ -10,7 +10,7 @@ pdfs/%.pdf: build/%.tex
 	@pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -aux-directory=$$(dirname $<) -output-directory=$$(dirname $<) "$<"
 	@mv "$$(find $$(dirname $<) -name '*.pdf')" "$$(dirname $@)/"
 
-build/%.tex: songs/%.tex
+build/%.tex: songs/%.tex template.tex
 	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
 	@echo "Creating source: $@"
 	@sed -e '/% SONG_FILE/r $<' template.tex > $@
