@@ -19,4 +19,5 @@ clean:
 	rm -rf build/
 	rm -rf pdfs/
 
-.PHONY: all clean destination
+.PHONY: clean all
+.SECONDARY:
