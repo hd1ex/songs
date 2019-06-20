@@ -2,7 +2,7 @@
 % See http://songs.sourceforge.net/songsdoc/songs.html
 
 \documentclass[landscape, 11pt, a4paper, oneside, ngerman]{book}
-\usepackage[landscape]{geometry}
+\usepackage{geometry}
 \usepackage[bookmarks]{hyperref}
 \usepackage[chorded]{songs}
 \usepackage[utf8x]{inputenc}
@@ -10,8 +10,11 @@
 \usepackage{lastpage} % Page numbers
 \usepackage{lmodern} % Latin Modern font
 
-% Don't waste that much paper space
-\geometry{a4paper, top=15mm, left=20mm, right=20mm, bottom=22.5mm, headsep=2.5mm, footskip=5mm}
+% Use A4 in Landscape and don't waste that much paper space
+\geometry{a4paper, landscape, top=15mm, left=20mm, right=20mm, bottom=22.5mm, headsep=2.5mm, footskip=5mm}
+
+% Use two columns for song pages
+\songcolumns{2}
 
 % Use other fonts
 \renewcommand{\familydefault}{\sfdefault}
