@@ -1,16 +1,19 @@
+% This template creates songbooks using the songs package
+% See http://songs.sourceforge.net/songsdoc/songs.html
+
 \documentclass[landscape, 11pt, a4paper, oneside, ngerman]{book}
 \usepackage[landscape]{geometry}
 \usepackage[bookmarks]{hyperref}
 \usepackage[chorded]{songs}
 \usepackage[utf8x]{inputenc}
-\usepackage{textcomp}
-\usepackage{geometry}
-\usepackage{lastpage}
-\usepackage{lmodern}
+\usepackage{textcomp} % Text Companion fonts allows symbols
+\usepackage{lastpage} % Page numbers
+\usepackage{lmodern} % Latin Modern font
 
+% Don't waste that much paper space
 \geometry{a4paper, top=15mm, left=20mm, right=20mm, bottom=22.5mm, headsep=2.5mm, footskip=5mm}
-\setlength{\headheight}{10mm}
 
+% Use other fonts
 \renewcommand{\familydefault}{\sfdefault}
 \renewcommand{\lyricfont}{\sffamily}
 \renewcommand{\chorusfont}{\sffamily}
@@ -18,6 +21,9 @@
 
 \newindex{titleidx}{cbtitle}
 \indexsongsas{titleidx}{\thepage}
+
+% Use this to display no song numbers
+%\nosongnumbers
 
 \begin{document}
     %\showindex{Title index}{titleidx}
