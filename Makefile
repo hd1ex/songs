@@ -20,7 +20,11 @@ songbook: pdfs/songbook.pdf
 pdfs/songbook.pdf: build/songbook.tex
 	@[ -d $$(dirname $@) ] || mkdir $$(dirname $@)
 	@echo "Making songbook..."
-	latexmk -pdf -output-directory=$$(dirname $<) "$<"
+	pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=$$(dirname $<) "$<"
+	for index in $$(find build/ -iname '*.sxd'); do \
+		texlua /usr/share/songs/songidx.lua $$index "$$(echo "$$index" | cut -d '.' -f1).sbx" ; \
+	done
+	pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=$$(dirname $<) "$<"
 	mv "build/songbook.pdf" "$@"
 
 build/songbook.tex: $(srcfiles) template.tex
