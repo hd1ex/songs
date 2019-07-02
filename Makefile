@@ -8,7 +8,7 @@ pdfs/%.pdf: build/%.tex
 	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
 	@echo "Creating pdf: $@"
 	pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=$$(dirname $<) "$<"
-	mv "$$(find $$(dirname $<) -name '*.pdf')" "$$(dirname $@)/"
+	cp "$$(find $$(dirname $<) -name '*.pdf')" "$$(dirname $@)/"
 
 build/%.tex: songs/%.tex template.tex
 	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
@@ -25,7 +25,7 @@ pdfs/songbook.pdf: build/songbook.tex
 		texlua /usr/share/songs/songidx.lua $$index "$$(echo "$$index" | cut -d '.' -f1).sbx" ; \
 	done
 	pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=$$(dirname $<) "$<"
-	mv "build/songbook.pdf" "$@"
+	cp "build/songbook.pdf" "$@"
 
 build/songbook.tex: $(srcfiles) template.tex
 	[ -d build/ ] || mkdir build/
