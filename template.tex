@@ -11,6 +11,17 @@
 \usepackage{lmodern} % Latin Modern font
 \usepackage{makeidx}
 
+\hypersetup{
+    pdftitle={An open-source LaTeX songbook}
+}
+
+\title{
+    An open-source LaTeX songbook
+    \\\vspace{1em}\large
+    Contribute at \texttt{\href{https://github.com/hd1ex/songs}{https://github.com/hd1ex/songs}}
+}
+\author{Made by Alex and friends \ensuremath\heartsuit}
+
 % Use A4 in Landscape and don't waste that much paper space
 \geometry{a4paper, landscape, top=15mm, left=20mm, right=20mm, bottom=22.5mm, headsep=2.5mm, footskip=5mm}
 
@@ -35,6 +46,8 @@
 \newindex{mainindex}{idxfile}
 
 \begin{document}
+    \maketitle
+
     \showindex[2]{Title index}{mainindex}
 
     \begin{songs}{mainindex}
