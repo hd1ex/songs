@@ -8,7 +8,8 @@ pdfs/%.pdf: build/%.tex
 	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
 	@echo "Creating pdf: $@"
 	pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=$$(dirname $<) "$<"
-	cp "$$(find $$(dirname $<) -name '*.pdf')" "$$(dirname $@)/"
+	TEXFILE="$<"; \
+	cp "$${TEXFILE%.*}.pdf" "$@"
 
 build/%.tex: songs/%.tex template.tex
 	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
