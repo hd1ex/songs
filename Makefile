@@ -1,4 +1,4 @@
-srcfiles  := $(shell find songs/ -type f -name '*.tex' | sort -r)
+srcfiles  := $(shell sh get_added_song_order.sh | cut -f 2 -d " ")
 destfiles := $(patsubst songs/%.tex,build/%.tex,$(srcfiles))
 pdffiles := $(patsubst songs/%.tex,pdfs/%.pdf,$(srcfiles))
 
