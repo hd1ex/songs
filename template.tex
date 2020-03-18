@@ -39,16 +39,23 @@
 \renewcommand{\chorusfont}{\sffamily}
 \renewcommand{\idxtitlefont}{\sffamily\normalfont}
 
-\newindex{titleidx}{cbtitle}
-\indexsongsas{titleidx}{\thepage}
+% Declare a title index
+\newindex{mainindex}{idxfile}
+
+% Override default index settings (see http://songs.sourceforge.net/songsdoc/songs.html#sec11.6.5)
+\titleprefixword{aSongTitleNeverStartsWithThisWord}
+\authsepword{and}
+\authsepword{und}
+\authbyword{by}
+\authbyword{durch}
+\authignoreword{unknown}
+\authignoreword{unbekannt}
 
 % Always let songs be on their own pages
 \spenalty=-10000
 
 % Use this to display no song numbers
 %\nosongnumbers
-
-\newindex{mainindex}{idxfile}
 
 \begin{document}
     \maketitle
