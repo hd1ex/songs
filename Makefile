@@ -23,7 +23,7 @@ pdfs/songbook.pdf: build/songbook.tex
 	@echo "Making songbook..."
 	pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=$$(dirname $<) "$<"
 	for index in $$(find build/ -iname '*.sxd'); do \
-		texlua /usr/share/songs/songidx.lua $$index "$$(echo "$$index" | cut -d '.' -f1).sbx" ; \
+		texlua songidx.lua $$index "$$(echo "$$index" | cut -d '.' -f1).sbx" ; \
 	done
 	pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=$$(dirname $<) "$<"
 	cp "build/songbook.pdf" "$@"
