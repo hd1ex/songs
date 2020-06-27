@@ -2,7 +2,9 @@ srcfiles  := $(shell sh get_added_song_order.sh | cut -f 2 -d " ")
 destfiles := $(patsubst songs/%.tex,build/%.tex,$(srcfiles))
 pdffiles := $(patsubst songs/%.tex,pdfs/%.pdf,$(srcfiles))
 
-all: $(pdffiles)
+all: songbook songs
+songbook: pdfs/songbook.pdf
+songs: $(pdffiles)
 
 pdfs/%.pdf: build/%.tex
 	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
@@ -15,8 +17,6 @@ build/%.tex: songs/%.tex template.tex
 	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
 	@echo "Creating source: $@"
 	@sed -e '/% SONG_FILE/r $<' template.tex > $@
-
-songbook: pdfs/songbook.pdf
 
 pdfs/songbook.pdf: build/songbook.tex
 	@[ -d $$(dirname $@) ] || mkdir $$(dirname $@)
@@ -40,5 +40,5 @@ clean:
 	rm -rf build/
 	rm -rf pdfs/
 
-.PHONY: clean all songbook
+.PHONY: clean all songbook songs
 .SECONDARY:
