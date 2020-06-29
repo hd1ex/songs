@@ -9,10 +9,10 @@ songs: $(pdffiles)
 
 pdfs/%.pdf: build/%.tex
 	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
+	TEXFILE="$<"; \
+	ln -sf "../../$@" "$${TEXFILE%.*}.pdf"
 	@echo "Creating pdf: $@"
 	$(latex) -output-directory=$$(dirname $<) "$<"
-	TEXFILE="$<"; \
-	cp "$${TEXFILE%.*}.pdf" "$@"
 
 build/%.tex: songs/%.tex template.tex
 	# Let LaTeX put its build files into the build dir
@@ -35,13 +35,13 @@ build/%.tex: songs/%.tex template.tex
 
 pdfs/songbook.pdf: build/songbook.tex
 	@[ -d $$(dirname $@) ] || mkdir $$(dirname $@)
+	ln -sf "../pdfs/songbook.pdf" "build/songbook.pdf"
 	@echo "Making songbook..."
 	$(latex) -output-directory=$$(dirname $<) "$<"
 	for index in $$(find build/ -iname '*.sxd'); do \
 		texlua songidx.lua $$index "$$(echo "$$index" | cut -d '.' -f1).sbx" ; \
 	done
 	$(latex) -output-directory=$$(dirname $<) "$<"
-	cp "build/songbook.pdf" "$@"
 
 build/songbook.tex: $(srcfiles) template.tex
 	[ -d build/ ] || mkdir build/
