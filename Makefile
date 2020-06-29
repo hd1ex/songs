@@ -16,7 +16,7 @@ pdfs/%.pdf: build/%.tex
 
 build/%.tex: songs/%.tex template.tex
 	# Let LaTeX put its build files into the build dir
-	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
+	mkdir -p $$(dirname $@)
 	SONGDIR="build/songs/$$(echo "$$(dirname $@)" | cut -d'/' -f2-)"; \
 	[ -d "$$SONGDIR" ] || mkdir -p "$$SONGDIR"
 	ln -sf "../songs" "$$(dirname $@)/songs"
@@ -34,7 +34,7 @@ build/%.tex: songs/%.tex template.tex
 	sed -ie "/% SONG_FILE/a \\\\\\\\setcounter{songnum}{$$SONG_NUM}" $@
 
 pdfs/songbook.pdf: build/songbook.tex
-	@[ -d $$(dirname $@) ] || mkdir $$(dirname $@)
+	mkdir -p $$(dirname $@)
 	ln -sf "../pdfs/songbook.pdf" "build/songbook.pdf"
 	# Making songbook...
 	$(latex) -output-directory=$$(dirname $<) "$<"
