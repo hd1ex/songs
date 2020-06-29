@@ -11,7 +11,7 @@ pdfs/%.pdf: build/%.tex
 	@[ -d $$(dirname $@) ] || mkdir -p $$(dirname $@)
 	TEXFILE="$<"; \
 	ln -sf "../../$@" "$${TEXFILE%.*}.pdf"
-	@echo "Creating pdf: $@"
+	# Creating pdf: $@
 	$(latex) -output-directory=$$(dirname $<) "$<"
 
 build/%.tex: songs/%.tex template.tex
@@ -36,7 +36,7 @@ build/%.tex: songs/%.tex template.tex
 pdfs/songbook.pdf: build/songbook.tex
 	@[ -d $$(dirname $@) ] || mkdir $$(dirname $@)
 	ln -sf "../pdfs/songbook.pdf" "build/songbook.pdf"
-	@echo "Making songbook..."
+	# Making songbook...
 	$(latex) -output-directory=$$(dirname $<) "$<"
 	for index in $$(find build/ -iname '*.sxd'); do \
 		texlua songidx.lua $$index "$$(echo "$$index" | cut -d '.' -f1).sbx" ; \
